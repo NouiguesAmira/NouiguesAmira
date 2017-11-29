@@ -1,5 +1,6 @@
 <?php
 require_once("Mysql.php");
+require_once("Produit_Commande.php");
 class Produit extends Mysql
 {
 	// Les attributs privés
@@ -72,6 +73,24 @@ class Produit extends Mysql
 			)";
 		$res = $this->requete($q);
 		return mysqli_insert_id($this->get_cnx());
+	}
+
+
+	public function top5()
+	{
+	    $q = "SELECT pc.id_prod,sum(pc.qte) as total FROM  Produit_Commande pc group by pc.id_prod order by total desc limit 5;";
+		$res = $this->requete($q);
+		return mysqli_insert_id($this->get_cnx());
+		while($row = mysqli_fetch_array( $res)){
+			$prod = new Produit_Commande();
+
+		$prod->_id_prod			= $row['id_prod'];
+		$prod->_total	        = $row['total'];
+		
+			$list_prod[]=$prod;
+		}
+		
+		return $list_prod;
 	}
 	
 	public function modifier(){

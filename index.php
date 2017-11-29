@@ -21,8 +21,25 @@ require_once("./classes/Categorie.php");?>
 						<div class="panel-group category-products" id="accordian">
 							Bienvenue au site Affable Beans. Nous vous proposons des produits frais et bios sans aromes ni conservateurs. A droite vous avez la liste de nos catégories de produits. Cliquer sur une catégorie pour avoir la liste des produits de cette catégorie. Ensuite ajouter le produit de votre choix au panier et validez votre commande.
 						</div>
-					
+					<div class="panel-group category-products" id="accordian">
+							Top 5 :
+							<?php 
+							require_once("./classes/Produit_Commande.php");
+							require_once("./classes/Produit.php");
+                            $cat = new Produit();	
+         				 	$liste = $cat->top5();
+          					foreach($liste as $data )
+          					{
 
+
+							$produit = new Produit();	
+          					$liste = $produit->liste();
+         				 foreach($liste as $data )
+         					 {
+
+
+							?>
+						</div>
 						
 					
 					</div>

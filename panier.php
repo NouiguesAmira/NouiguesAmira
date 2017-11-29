@@ -101,10 +101,10 @@
 
 					<div class="total_area">
 						<ul>
-							<li>Sous total <span><?php echo $st; ?> DTN</span></li>
-							<li>TVA (10%) <span><?php echo $tva; ?> DTN</span></li>
+							<li>Sous total <span><?php echo @$st; ?> DTN</span></li>
+							<li>TVA (10%) <span><?php echo @$tva; ?> DTN</span></li>
 							<li>Frais de transport <span>Gratuit</span></li>
-							<li>Total <span><?php echo $t; ?> DTN</span></li>
+							<li>Total <span><?php echo @$t; ?> DTN</span></li>
 						</ul>
 							<a class="btn btn-default update" href="#" onclick="form.submit()">Mettre à jour le panier</a>
 							<a class="btn btn-default check_out" href="commander.php">Valider ma commande</a>

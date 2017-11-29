@@ -1,6 +1,7 @@
 <?php 
 $x=0;
-if(empty($_SESSION['panier'])){header("header.php");}else{foreach (@$_SESSION['panier'] as $key => $value) {$x=$x+$value;}header("header.php");}
+if(empty($_SESSION['panier'])){header("header.php");}else{foreach (@$_SESSION['panier'] as $key => $value) {$x=$x+$value;}
+header("header.php");}
 ?>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">

@@ -8,6 +8,7 @@ class Commande extends Mysql
 	private $_prenom;
 	private $_adress;
 	private $_email;
+	private $_date_c;
 
 	// Méthode magique pour les setters & getters
 	public function __get($attribut) {
@@ -33,11 +34,11 @@ class Commande extends Mysql
 		$prod = new Commande();
 		
 		$prod->_id 			= $row['id'];
-		$prod->_nom 	= $row['nom'];
+		$prod->_nom 		= $row['nom'];
 		$prod->_prenom 		= $row['prenom'];
 		$prod->_email		= $row['email'];
-		$prod->_adress	= $row['adress'];
-		
+		$prod->_adress		= $row['adress'];
+		$prod->_date_c       = $row['date_c'];
 		return $prod;
 	}
 
@@ -51,10 +52,10 @@ class Commande extends Mysql
 			$prod = new Commande();
 
 		$prod->_id 			= $row['id'];
-		$prod->_nom 	= $row['nom'];
-		$prod->_prenom 		= $row['prenom'];
+		$prod->_nom 	    = $row['nom'];
 		$prod->_email		= $row['email'];
-		$prod->_adress	= $row['adress'];
+		$prod->_adress	    = $row['adress'];
+		$prod->_date_c        = $row['date_c'];
 		
 			$list_prod[]=$prod;
 		}
@@ -64,10 +65,10 @@ class Commande extends Mysql
 	
 	public function ajouter()
 	{
-	    $q = "INSERT INTO Commande(id, nom, prenom,email, adress) VALUES 
-	  		(  null				, '$this->_nom'		,
-			  '$this->_prenom'	,'$this->_email','$this->_adress'
-			)";
+		
+	    $q = "INSERT INTO commande(id,nom,email,adress,date_c) VALUES 
+	  		(  null	,'$this->_nom','$this->_email','$this->_adress',NOW()
+			);";
 		$res = $this->requete($q);
 		return mysqli_insert_id($this->get_cnx());
 	}
@@ -75,10 +76,9 @@ class Commande extends Mysql
 	public function modifier(){
 		$q = "UPDATE commande SET
 			  nom 	= '$this->_nom',
-			  prenom = '$this->_prenom',
-			  email = '$this->_email'
-			  adress = '$this->_adress'
-			  
+			  email = '$this->_email',
+			  adress = '$this->_adress',
+			  date_c = NOW()
 			  WHERE id = '$this->_id' ";
 	  
 		$res = $this->requete($q);
